@@ -1,81 +1,52 @@
-# 金融取引管理システム (Financial Trading Management System)
+# RuPPs System - Ruito Position Profit and Loss
 
-## プロジェクト概要
+取引管理システム（RuPPs）は、取引の明細照会、承認管理、強制入力、レポート生成などの機能を提供するWebアプリケーションです。
 
-このプロジェクトは、日本の金融取引を管理するための最新のWebアプリケーションです。旧来のモノリシックなJSPベースのシステムから、モダンな前後端分離アーキテクチャへの移行を実現します。
+## 🚀 技術スタック
 
-## 技術スタック
-
-### フロントエンド
-- **React 19.x** - UIライブラリ
-- **Vite 6.x** - ビルドツール
-- **Redux Toolkit** - 状態管理
-- **React Router DOM** - ルーティング
-- **Ant Design** - UIコンポーネントライブラリ
-- **Tailwind CSS 4.x** - ユーティリティファーストCSSフレームワーク
+- **React 18** - UIライブラリ
+- **React Router v6** - ルーティング
+- **Tailwind CSS** - スタイリング
+- **Vite** - ビルドツール
 - **Axios** - HTTPクライアント
-- **Mock.js** - モックデータ生成
-- **Day.js** - 日付処理
+- **MockJS** - モックデータ生成
 
-## プロジェクト構造
+## 📋 機能
 
-```
-src/
-├── app/                          # アプリケーションコア
-│   ├── store/                    # Redux store
-│   ├── router/                   # ルーター設定
-│   ├── api/                      # API設定
-│   └── App.jsx                   # メインアプリコンポーネント
-│
-├── pages/                        # ページコンポーネント（高内聚設計）
-│   ├── Login/                    # ログインページ
-│   ├── Home/                     # ホームページ
-│   ├── TransactionManagement/    # 取引管理
-│   │   ├── TransactionDetail/    # 取引明細照会
-│   │   ├── ForceInput/           # 強制入力
-│   │   └── ForceInputHistory/    # 強制入力履歴
-│   ├── BalanceManagement/        # 残高損益管理
-│   ├── MarketValueManagement/    # 時価管理
-│   └── ApprovalManagement/       # 承認管理
-│
-├── shared/                       # 共有リソース
-│   ├── components/               # 共通コンポーネント
-│   ├── hooks/                    # カスタムフック
-│   ├── utils/                    # ユーティリティ関数
-│   └── constants/                # 定数
-│
-├── assets/                       # 静的リソース
-├── styles/                       # グローバルスタイル
-└── main.jsx                      # エントリーポイント
-```
+### 1. ダッシュボード
+- システムの概要表示
+- 統計情報の可視化
+- クイックアクション
 
-## アーキテクチャの特徴
+### 2. 取引明細照会
+- 取引データの検索・フィルタリング
+- CSV エクスポート
+- ページネーション付きテーブル表示
 
-### 高内聚コンポーネント設計
-各ページは自己完結型のモジュールとして設計されています：
+### 3. 承認照会
+- 承認待ちリクエストの管理
+- 承認/却下操作
+- 一括操作対応
 
-```
-TransactionDetail/
-├── index.jsx           # ページエントリー
-├── components/         # ページ専用コンポーネント
-├── hooks/             # ページ専用フック
-├── store/             # ページ専用状態管理
-├── api.js             # API定義
-├── mock.js            # モックデータ
-├── constants.js       # 定数
-└── index.css          # スタイル
-```
+### 4. 取引強制入力
+- CSVファイルアップロード
+- 手動入力フォーム
+- バリデーション機能
 
-### UI/データ分離
-- **ページコンポーネント**: UIの組み立てのみ担当
-- **カスタムフック**: ビジネスロジックとデータ処理
-- **Redux Slice**: グローバル状態管理
-- **API層**: バックエンド通信
+### 5. レポート
+- 各種レポート生成
+- Excel出力
+- カスタムフィルタリング
 
-## セットアップ
+### 6. 設定
+- ユーザー情報管理
+- システム設定
+- 通知設定
 
-### 前提条件
-- Node.js 22.x 以上
+## 🛠️ セットアップ
+
+### 必要要件
+- Node.js 16.x 以上
 - npm または yarn
 
 ### インストール
@@ -84,138 +55,132 @@ TransactionDetail/
 # 依存関係のインストール
 npm install
 
-# 開発サーバー起動
+# 開発サーバーの起動
 npm run dev
 
-# ビルド
+# 本番ビルド
 npm run build
 
 # プレビュー
 npm run preview
 ```
 
-## 主な機能
+## 🔐 ログイン情報（デモ）
 
-### 1. 認証システム
-- ログイン/ログアウト
-- JWT トークン管理
-- 保護されたルート
+- **ユーザー名**: admin
+- **パスワード**: admin
 
-**デモ用ログイン情報:**
-- ユーザー名: 任意
-- パスワード: `123456`
+## 📁 プロジェクト構造
 
-### 2. 取引管理
-#### 取引明細照会
-- 高度な検索フィルター（取引番号、顧客、日付範囲など）
-- ページネーション付きデータテーブル
-- 詳細情報モーダル
-- CSV エクスポート機能
-
-#### Rupps取引強制入力
-- CSV ファイルアップロード
-- リアルタイムファイル検証
-- エラー表示
-- 承認者選択
-
-#### 強制入力履歴照会
-- 履歴データの検索と表示
-
-### 3. その他の機能
-- 残高損益管理
-- 時価管理
-- 承認管理
-
-## Mock.js の使用
-
-開発環境では、Mock.js を使用してバックエンド API をシミュレートします：
-
-```javascript
-// 自動的に初期化される
-import './app/api/mock';
-
-// カスタムモックの追加
-Mock.mock(/\/api\/your-endpoint/, 'post', {
-  code: 200,
-  data: { /* your data */ }
-});
+```
+rupps-system/
+├── src/
+│   ├── api/              # API呼び出し
+│   │   ├── request.js    # Axios設定
+│   │   ├── transaction.js
+│   │   ├── approval.js
+│   │   └── user.js
+│   ├── components/       # コンポーネント
+│   │   ├── common/       # 共通コンポーネント
+│   │   │   ├── Button.jsx
+│   │   │   ├── Input.jsx
+│   │   │   ├── Select.jsx
+│   │   │   ├── Table.jsx
+│   │   │   ├── Pagination.jsx
+│   │   │   ├── Modal.jsx
+│   │   │   ├── DatePicker.jsx
+│   │   │   ├── FileUpload.jsx
+│   │   │   ├── Loading.jsx
+│   │   │   └── Card.jsx
+│   │   └── layout/       # レイアウトコンポーネント
+│   │       ├── Header.jsx
+│   │       ├── Sidebar.jsx
+│   │       └── Layout.jsx
+│   ├── pages/            # ページコンポーネント
+│   │   ├── Dashboard.jsx
+│   │   ├── TransactionList.jsx
+│   │   ├── ApprovalList.jsx
+│   │   ├── ForceInput.jsx
+│   │   ├── Reports.jsx
+│   │   ├── Settings.jsx
+│   │   └── Login.jsx
+│   ├── router/           # ルーティング設定
+│   │   └── index.jsx
+│   ├── mock/             # モックデータ
+│   │   └── index.js
+│   ├── utils/            # ユーティリティ関数
+│   │   └── helpers.js
+│   ├── styles/           # スタイル
+│   │   └── index.css
+│   ├── App.jsx          # アプリケーションルート
+│   └── main.jsx         # エントリーポイント
+├── public/              # 静的ファイル
+├── index.html           # HTML テンプレート
+├── package.json         # 依存関係
+├── vite.config.js       # Vite 設定
+├── tailwind.config.js   # Tailwind CSS 設定
+└── postcss.config.js    # PostCSS 設定
 ```
 
-## 開発ガイドライン
+## 🎨 デザインシステム
 
-### 新しいページの追加
+### カラーパレット
+- **Primary**: Red (#C53030) - メインアクション、強調
+- **Success**: Green - 成功状態、承認
+- **Warning**: Yellow - 警告、申請中
+- **Danger**: Red - エラー、却下
+- **Gray**: グレースケール - テキスト、背景
 
-1. **ページディレクトリの作成**
-```bash
-mkdir -p src/pages/NewPage/{components,hooks,store}
-```
+### コンポーネント
+全てのコンポーネントは Tailwind CSS を使用してスタイリングされています。
 
-2. **必要なファイルの作成**
-- `index.jsx` - ページコンポーネント
-- `api.js` - API 定義
-- `mock.js` - モックデータ
-- `constants.js` - 定数
-- `store/newPageSlice.js` - Redux slice (必要な場合)
+## 🔧 APIエンドポイント（モック）
 
-3. **ルートの追加**
-```javascript
-// src/app/router/index.jsx
-{
-  path: '/new-page',
-  element: <NewPage />,
-}
-```
+現在、MockJS を使用してフロントエンドのみで動作します。以下のAPIがモック化されています：
+
+- `GET /rupps/transactions` - 取引一覧取得
+- `POST /rupps/transactions/upload` - CSV アップロード
+- `POST /rupps/transactions/force-input` - 強制入力
+- `GET /rupps/approvals` - 承認一覧取得
+- `POST /rupps/approvals/:id/approve` - 承認
+- `POST /rupps/approvals/:id/reject` - 却下
+- `POST /auth/login` - ログイン
+- `GET /auth/user` - ユーザー情報取得
+
+## 📝 開発ガイドライン
 
 ### コーディング規約
+- コンポーネントはPascalCaseで命名
+- ファイル名は拡張子に .jsx を使用
+- Tailwind CSSのユーティリティクラスを使用
+- コメントは日本語で記述
 
-- **コンポーネント**: PascalCase (例: `UserProfile.jsx`)
-- **関数/変数**: camelCase (例: `handleSubmit`)
-- **定数**: UPPER_SNAKE_CASE (例: `MAX_FILE_SIZE`)
-- **ファイル名**: kebab-case または PascalCase
+### コンポーネントの作成
+```jsx
+import React from 'react';
+import { Button } from '../components/common';
 
-### 状態管理のルール
+const MyComponent = () => {
+  return (
+    <div className="p-4">
+      <Button onClick={() => console.log('clicked')}>
+        クリック
+      </Button>
+    </div>
+  );
+};
 
-1. **ローカル状態**: コンポーネント内で完結する状態は `useState`
-2. **共有状態**: 複数コンポーネントで使用する状態は Redux
-3. **非同期処理**: `createAsyncThunk` を使用
-
-## ビルドとデプロイ
-
-```bash
-# 本番ビルド
-npm run build
-
-# dist/ フォルダの内容をデプロイ
+export default MyComponent;
 ```
 
-## トラブルシューティング
+## 🤝 貢献
 
-### 問題: モックデータが動作しない
-- `src/app/api/mock.js` がインポートされているか確認
-- ブラウザのコンソールで Mock.js の初期化ログを確認
+プルリクエストを歓迎します。大きな変更の場合は、まずissueを開いて変更内容を議論してください。
 
-### 問題: ルーティングエラー
-- HashRouter を使用しているため、URL は `#/path` 形式
-- ブラウザをリフレッシュして再試行
+## 📄 ライセンス
 
-### 問題: スタイルが適用されない
-- `src/styles/global.css` がインポートされているか確認
-- Tailwind CSS の設定を確認
+MIT License
 
-## 今後の開発計画
+## 📞 サポート
 
-- [ ] TypeScript への移行
-- [ ] 単体テストの追加（Jest + React Testing Library）
-- [ ] E2E テストの追加（Playwright）
-- [ ] パフォーマンス最適化
-- [ ] アクセシビリティの向上
-- [ ] 国際化（i18n）対応
-- [ ] PWA対応
-
-## ライセンス
-
-このプロジェクトは社内用です。
-
-## 連絡先
-
-プロジェクトに関する質問や提案は、開発チームまでお問い合わせください。
+問題が発生した場合は、GitHubのissueセクションで報告してください。
